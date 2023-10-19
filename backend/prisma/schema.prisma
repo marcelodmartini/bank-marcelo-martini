@@ -1,0 +1,60 @@
+// Prisma schema for managing banking data and events.
+
+// Client Configuration: Specifies the Prisma client settings.
+generator client {
+  // Using the Prisma JavaScript client.
+  provider      = "prisma-client-js"
+  // Binary targets for Prisma Client generator.
+  binaryTargets = ["native", "linux-musl"]
+}
+
+// Datasource Configuration: Specifies the connection to the database.
+datasource db {
+  // Using MySQL as the database provider.
+  provider     = "mysql"
+  // Connection URL fetched from environment variables.
+  url          = env("DATABASE_URL")
+  // Relation mode configuration for Prisma.
+  relationMode = "prisma"
+}
+
+// Represents a bank account.
+model Account {
+  id           Int           @default(autoincrement())  // Unique identifier for the account.
+  name         String        @db.VarChar(200)           // Name associated with the account.
+  number       Int                                     // Account number.
+  balance      Float                                  // Current balance in the account.
+  createdAt    DateTime      @default(now())           // Timestamp of when the account was created.
+  updatedAt    DateTime      @updatedAt                // Timestamp of the last account update.
+  userId       String        @db.VarChar(255)           // Identifier of the user owning the account.
+  transactions Transaction[]                           // List of transactions associated with this account.
+
+  @@id([id, userId])   // Composite primary key using ID and userId.
+}
+
+// Represents a banking transaction (e.g., deposit, withdrawal).
+model Transaction {
+  id        Int      @id @default(autoincrement())      // Unique identifier for the transaction.
+  amount    Float                                      // Amount involved in the transaction.
+  type      Type                                       // Type of the transaction (deposit or withdrawal).
+  createdAt DateTime @default(now())                   // Timestamp of when the transaction occurred.
+  userId    String   @db.VarChar(255)                   // Identifier of the user who initiated the transaction.
+  accountId Int                                        // Account ID linked with the transaction.
+  account   Account  @relation(fields: [accountId, userId], references: [id, userId])  // Relation to the Account model.
+
+  @@index([accountId, userId])  // Index for optimizing queries using accountId and userId.
+}
+
+// Represents an event store for logging system-wide events.
+model EventStore {
+  id        Int      @id @default(autoincrement())      // Unique identifier for the event.
+  name      String   @db.VarChar(255)                   // Name or title of the event.
+  payload   Json                                       // Detailed payload or data associated with the event.
+  createdAt DateTime @default(now())                   // Timestamp of when the event was logged.
+}
+
+// Enum specifying the types of banking transactions.
+enum Type {
+  DEPOSIT    // Adding funds to an account.
+  WITHDRAWAL // Removing funds from an account.
+}
