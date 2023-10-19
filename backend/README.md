@@ -1,7 +1,4 @@
 # Xepelin - Backend
-- DDD for separate entities and the structures packages are created based on the DDD configuration
-- REST API with [NestJS](https://docs.nestjs.com/ "NestJS") and [Prisma](https://www.prisma.io/ "Prisma")
-- Authentication with [Cognito](https://aws.amazon.com/es/cognito/ "Cognito")
 
 ### Stack Tecnologico y Arquitectura
 
