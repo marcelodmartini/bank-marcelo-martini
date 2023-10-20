@@ -251,7 +251,4 @@ $ npm install
 - Use supertest para probar los endpoints de las APIs.
 - Use mysql con prisma como orm para testear a nivel e2e.
 
-### Arquitectura en AWS
-
-Si necesitamos escalar propondría la siguiente arquitectura con una API Getway para la caché y un orquestador para gestionar los contenedores. A su vez un Event Bus como EventBridge para manejar eventos.
 
