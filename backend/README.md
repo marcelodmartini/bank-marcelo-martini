@@ -227,7 +227,7 @@ Además, implementa un middleware que registre en la consola cada vez que se rea
 
 ### API Documentation
 
-Documentación de Swagger disponible en https://localhost:3000/api/docs
+Documentación de Swagger disponible en http://localhost:3000/api/docs
 
 
 ### Puesta en marcha

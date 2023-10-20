@@ -2,26 +2,25 @@ version: "3.8"
 services:
   web:
     build:
-      context: ./front
+      context: ./frontend
       dockerfile: Dockerfile
     volumes:
-      - ./front:/usr/src/app
+      - ./frontend:/usr/src/app
       - /usr/src/app/node_modules
     command: npm run dev
     ports:
       - "3000:3000"
     environment:
       NEXT_PUBLIC_AWS_COGNITO_REGION: us-east-2
-      NEXT_PUBLIC_AWS_USER_POOLS_ID: us-east-2_ZcJPdYPkE 
-      NEXT_PUBLIC_AWS_USER_POOLS_WEB_CLIENT_ID: 7n40asqgqauh7t0vv7udr6e8oh	  											
+      NEXT_PUBLIC_AWS_USER_POOLS_ID: us-east-2_pgVunxTUh
+      NEXT_PUBLIC_AWS_USER_POOLS_WEB_CLIENT_ID: p9jtc8ka8o4srhfjl8cl4oi9n
       NEXT_PUBLIC_API_URL: http://localhost:4500
   api:
     container_name: "api"
     environment:
-      AWS_COGNITO_USER_POOL_ID: us-east-2_ZcJPdYPkE 
-      AWS_COGNITO_CLIENT_ID: 7n40asqgqauh7t0vv7udr6e8oh
-      AWS_COGNITO_AUTHORITY: https://cognito-idp.us-east-2.amazonaws.com/us-east-2_ZcJPdYPkE
-
+      AWS_COGNITO_USER_POOL_ID: us-east-2_pgVunxTUh
+      AWS_COGNITO_CLIENT_ID: p9jtc8ka8o4srhfjl8cl4oi9n
+      AWS_COGNITO_AUTHORITY: https://cognito-idp.us-east-2.amazonaws.com/us-east-2_pgVunxTUh
       DATABASE_URL: "mysql://user:user@db:3306/xepelin?schema=public"
       PORT: 4500
     build:

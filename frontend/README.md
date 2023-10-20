@@ -173,5 +173,5 @@ $ npm run dev
 ### Testing 
 1. Correr los tests 
 ```bash
-$ $npm run test
+$ npm run test
 ```
