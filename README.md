@@ -13,7 +13,7 @@
 2 - Escaneo/Ingreso en la Aplicación de Autenticación: Utilizarás una aplicación de autenticación, como Google Authenticator o Authy, para escanear el código QR o ingresar la clave secreta. Una vez que lo hagas, la aplicación comenzará a generar códigos TOTP basados en esa clave secreta y la hora actual.
 
 
-### Puesta en marcha
+### Start App
 
 1 - Primero hay que correr el siguiente comando.
 
