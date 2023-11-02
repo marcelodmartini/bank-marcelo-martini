@@ -4,6 +4,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import 'reflect-metadata';
 import { config } from 'dotenv';
+import rateLimit from 'express-rate-limit';
 
 /**
  * Entry point for the NestJS application. 
@@ -13,6 +14,7 @@ import { config } from 'dotenv';
 async function startApp() {
   config();
   const app = await initializeNestApplication();
+  configurateRateLimite(app);
   configureMiddlewares(app);
   setupSwaggerDocumentation(app);
   const port = determineServerPort();
@@ -66,6 +68,20 @@ function setupSwaggerDocumentation(app) {
  */
 function determineServerPort() {
   return process.env.PORT || 3000;
+}
+/**
+ * windowMs: Defines the time period in which the number of requests is counted. In this case, 15 minutes have been set. 
+ * So if an IP makes 100 requests in less than 15 minutes, it will be blocked until the time window passes.
+ * max: The maximum number of requests allowed from a single IP within the specified time window. In this example, 
+ * it has been set to 100 requests. With this configuration, if an IP exceeds 100 requests in 15 minutes,
+ * additional requests from that IP will be blocked until the current time window expires.
+ */
+function configurateRateLimite(app) {
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+  });
+  app.use(limiter);
 }
 
 startApp();

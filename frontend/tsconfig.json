@@ -1,29 +1,66 @@
 {
   "compilerOptions": {
+    // Specifies type definitions to be included. These are for Jest and testing-library.
     "types": ["jest", "@testing-library/jest-dom"],
+
+    // Defines the ECMAScript target version. 'es5' targets ECMAScript 5.
     "target": "es5",
+
+    // Libraries to be included in the compilation. Here, it includes definitions for the DOM, DOM iterables, and newer ECMAScript features.
     "lib": ["dom", "dom.iterable", "esnext"],
+
+    // Allows JavaScript files to be compiled.
     "allowJs": true,
+
+    // Skips type-checking of library files for faster compilation.
     "skipLibCheck": true,
+
+    // Enables all strict type-checking options.
     "strict": true,
+
+    // Ensures file names are consistent regarding the casing.
     "forceConsistentCasingInFileNames": true,
+
+    // Does not produce output files (like .js or .d.ts).
     "noEmit": true,
+
+    // Enables ES6-compatible imports and exports.
     "esModuleInterop": true,
+
+    // Defines the module system. 'esnext' is compatible with ES6-based imports and exports.
     "module": "esnext",
+
+    // Module resolution strategy. 'node' follows the same logic as Node.js.
     "moduleResolution": "node",
+
+    // Allows importing of .json module files.
     "resolveJsonModule": true,
+
+    // Ensures each file is transpiled in isolation. Useful for larger projects.
     "isolatedModules": true,
+
+    // Specifies how to handle JSX extensions. 'preserve' keeps them intact.
     "jsx": "preserve",
+
+    // Uses incremental compilation to speed up build times by reusing information from previous compilations.
     "incremental": true,
+
+    // Plugins that extend TypeScript functionality. Here, the 'next' plugin is being used.
     "plugins": [
       {
         "name": "next"
       }
     ],
+
+    // Defines alias-based paths for imports. '@/*' maps to './src/*'.
     "paths": {
       "@/*": ["./src/*"]
     }
   },
+
+  // Files or file patterns to be included in the compilation.
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+
+  // File patterns to be excluded from the compilation. 'node_modules' is typically excluded for better compilation performance.
   "exclude": ["node_modules"]
 }

@@ -1,7 +1,7 @@
-// Indicate that this file uses JavaScript's "strict mode".
+// Enabling strict mode in JavaScript to catch common coding bugs and prevent usage of potentially problematic features.
 "use strict";
 
-// Import required components and styles from Amplify and other dependencies.
+// Importing necessary components and styles from AWS Amplify and other libraries.
 import {
   Authenticator,
   Button,
@@ -9,22 +9,21 @@ import {
   Flex,
   translations
 } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
-import "@/amplify-config";
-import { I18n } from "aws-amplify";
+import "@aws-amplify/ui-react/styles.css";  // Incorporating the default styles of Amplify's UI components.
+import "@/amplify-config";  // Importing Amplify's configuration file, which sets up the backend services.
+import { I18n } from "aws-amplify";  // Using Amplify's I18n module for internationalization.
 
-// Set up translations and language for the I18n module.
+// Initializing translations and setting Spanish as the default language.
 setupTranslations();
 
 /**
  * Login Component.
- * 
- * This component provides an authentication interface for the user.
- * It allows the user to sign in, sign up, reset password, among other actions.
- * 
- * @param {object} props - Component properties.
- * @param {React.ReactNode} props.children - Child components that will be rendered within the authenticator.
- * @returns {React.Component} The rendered authentication component.
+ * Represents the main authentication interface of the application.
+ * Provides functionalities like sign-in, sign-up, password reset, etc.
+ *
+ * @param {object} props - Input properties for the component.
+ * @param {React.ReactNode} props.children - Child elements or components to render within the authenticator.
+ * @returns {React.Component} The authenticator component with associated logic and UI.
  */
 export default function Login({ children }: Props) {
   return (
@@ -42,7 +41,8 @@ export default function Login({ children }: Props) {
 }
 
 /**
- * Set up translations and language.
+ * Initialize translations and set default language.
+ * This function integrates the predefined translations and sets Spanish ('es') as the default language for the app.
  */
 function setupTranslations() {
   I18n.putVocabularies(translations);
@@ -50,15 +50,17 @@ function setupTranslations() {
 }
 
 /**
- * Generate the form fields configuration.
- * 
- * @returns {object} The form fields configuration.
+ * Configures form fields used during the authentication process.
+ *
+ * @returns {object} Configuration settings for form fields based on the app's requirements.
  */
 function formFieldsConfig() {
+  // Individual form field configurations
   const usernameField = { placeholder: "Enter your username" };
   const confirmPasswordField = { placeholder: "Confirm your password" };
   const confirmationCodeField = { placeholder: "Enter your confirmation code" };
 
+  // Configurations aggregated and mapped to corresponding authentication actions
   return {
     signIn: {
       username: usernameField,
@@ -83,12 +85,13 @@ function formFieldsConfig() {
 }
 
 /**
- * Render a card with user information and a sign out button.
- * 
- * @param {object} props - Component properties.
- * @param {object} props.user - Information of the currently authenticated user.
- * @param {Function} props.onSignOut - Function to execute when the sign out button is clicked.
- * @returns {React.Component} The rendered user card component.
+ * `UserCard` Component.
+ * Displays a card component with the username of the currently authenticated user and provides an option to sign out.
+ *
+ * @param {object} props - Properties passed to this component.
+ * @param {object} props.user - Data of the authenticated user.
+ * @param {Function} props.onSignOut - Function to be triggered when user opts to sign out.
+ * @returns {React.Component} A rendered card component with user details.
  */
 function UserCard({ user, onSignOut }) {
   return (
@@ -103,6 +106,7 @@ function UserCard({ user, onSignOut }) {
   );
 }
 
+// Prop types definition for the Login component.
 interface Props {
   children: React.ReactNode;
 }

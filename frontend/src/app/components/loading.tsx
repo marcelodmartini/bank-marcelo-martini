@@ -1,16 +1,16 @@
 "use client"
 
 // Import necessary components from the AWS Amplify UI library.
-import { Card, Flex, Loader } from "@aws-amplify/ui-react"
+import { Card, Flex, Loader } from "@aws-amplify/ui-react";
 
 /**
- * Loading Component
+ * Loading Component.
  * 
  * This component displays a loading animation inside a card.
- * It is meant to be used to indicate to the user that some data or 
- * content is currently being loaded.
+ * It is designed to provide visual feedback to the user, indicating
+ * that data or content is in the process of being loaded.
  * 
- * @returns {React.ReactElement} The rendered JSX component.
+ * @returns {React.ReactElement} A rendered JSX component displaying the loading animation.
  */
 export default function Loading() {
   return (
@@ -19,5 +19,5 @@ export default function Loading() {
         <Loader size="large" />
       </Flex>
     </Card>
-  )
+  );
 }

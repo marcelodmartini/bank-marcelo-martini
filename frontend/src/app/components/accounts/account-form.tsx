@@ -37,6 +37,14 @@ export default function AccountForm({ refreshData }: Props) {
     e.preventDefault()
 
     // Getting input values from the form.
+    // TODO you must use React's useState for form input values instead of directly manipulating the DOM.
+    // // State to handle errors during account creation.
+    // const [error, setError] = useState<string>("");
+
+    // // State to handle user's input for the name and account number.
+    // const [name, setName] = useState<string>("");
+    // const [accountNumber, setAccountNumber] = useState<number | null>(null);
+
     const nameInput = document.getElementById("name") as HTMLInputElement
     const numberInput = document.getElementById("number") as HTMLInputElement
 
@@ -49,6 +57,7 @@ export default function AccountForm({ refreshData }: Props) {
       setError(e?.response?.data?.message || 'An error occurred during account creation.')
     }
   }
+
 
   return (
     <form onSubmit={onSubmit}>

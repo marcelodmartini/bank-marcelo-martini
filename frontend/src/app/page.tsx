@@ -1,21 +1,22 @@
-// Indicate client side usage.
+// Indicate that the following code is meant for client side execution.
 "use client"
 
-// Importing necessary hooks, components, and UI elements.
-import useAccount from "./hooks/useAccount"
-import { Card, TabItem, Tabs } from "@aws-amplify/ui-react"
-import AccountForm from "./components/accounts/account-form"
-import BalanceCard from "./components/accounts/balance-card"
-import Loading from "./components/loading"
-import TransactionForm from "./components/transactions/transaction-form"
-import TransactionList from "./components/transactions/transaction-list"
-import Login from "./login/login"
+// Import hooks, UI components, and other necessary elements for the application.
+import useAccount from "./hooks/useAccount" // Hook to manage account state and operations.
+import { Card, TabItem, Tabs } from "@aws-amplify/ui-react" // UI components from AWS Amplify.
+import AccountForm from "./components/accounts/account-form" // Form to handle account creation and edits.
+import BalanceCard from "./components/accounts/balance-card" // Component to display user's account balance.
+import Loading from "./components/loading" // Loading component for asynchronous operations.
+import TransactionForm from "./components/transactions/transaction-form" // Form to handle transaction creation.
+import TransactionList from "./components/transactions/transaction-list" // List to display transaction history.
+import Login from "./login/login" // Authentication and login component.
 
 /**
  * Home Component.
- * This component serves as the main entry point to the application after authentication.
+ * Serves as the main entry point to the application post-authentication.
+ * Wraps the main app functionalities within the Login component to ensure user authentication.
  * 
- * @returns {JSX.Element} Rendered Login and Secure components.
+ * @returns {JSX.Element} Rendered combination of Login and Secure components.
  */
 export default function Home(): JSX.Element {
   return (
@@ -27,18 +28,22 @@ export default function Home(): JSX.Element {
 
 /**
  * Secure Component.
- * Represents the authenticated section of the application which displays
- * user's account info, balance, transactions, and allows for new transactions.
+ * Represents the authenticated section of the application. This section provides access
+ * to the user's account information, balance, transaction functionalities, and transaction history.
  * 
- * @returns {JSX.Element} Rendered account information and transaction features.
+ * @returns {JSX.Element} Rendered set of features including account management, transaction creation, and transaction history.
  */
 export function Secure(): JSX.Element {
+  // Utilize the account hook to fetch and manage account related data.
   const { data, isLoading, refreshData } = useAccount()
 
+  // If data is being loaded, display a loading spinner.
   if (isLoading) return <Loading />
 
+  // Determine if user has an account.
   const hasAccount = !!data
 
+  // Render appropriate components based on the account status and available transactions.
   return (
     <Card variation="outlined">
       {!hasAccount && <AccountForm refreshData={refreshData} />}
