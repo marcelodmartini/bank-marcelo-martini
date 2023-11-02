@@ -1,4 +1,4 @@
-## Xepelin - Build and Execute App 
+## Bank - Build and Execute App 
 
 ### Backend and Frontend
 
