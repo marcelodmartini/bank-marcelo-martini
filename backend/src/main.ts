@@ -50,8 +50,8 @@ function configureMiddlewares(app) {
  */
 function setupSwaggerDocumentation(app) {
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('xepelin')
-    .setDescription('Xepelin API description')
+    .setTitle('Bank')
+    .setDescription('Bank API description')
     .setVersion('1.0')
     // Specifies JWT bearer authentication for the API.
     .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' })

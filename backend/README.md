@@ -1,4 +1,4 @@
-# Xepelin - Backend
+# Bank - Backend
 
 ### Stack Tecnologico y Arquitectura
 
